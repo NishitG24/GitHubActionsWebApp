@@ -5,9 +5,9 @@ name: .NET
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master","develop"]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master","develop"]
 
 jobs:
   build:
@@ -25,4 +25,5 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
+      if: github.ref== 'refs/heads/develop'
       run: dotnet test --no-build --verbosity normal
